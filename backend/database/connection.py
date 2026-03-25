@@ -27,7 +27,8 @@ def get_db():
     db = SessionLocal()
     try:
         yield db           
-        db.commit()        
+        db.commit() 
+        db.refresh()       
     except Exception as e:
         db.rollback()      
         print(f"Session rollback due to: {e}")

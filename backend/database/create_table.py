@@ -1,4 +1,4 @@
-from auth.model.Users import Users
+from features.auth.model.Users import Users
 from database.connection import Base, engine
 
 
