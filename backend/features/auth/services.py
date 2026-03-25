@@ -6,7 +6,7 @@ class UserLogin():
         pass
     
     
-    async def RegisterUser(data:UserRegisterationSchema):
+    async def RegisterUser(self,data:UserRegisterationSchema):
         with get_db() as db:
             NewUser= Users(
                 username= data.username,
@@ -16,4 +16,3 @@ class UserLogin():
             )
             db.add(NewUser)
             return NewUser
-            
