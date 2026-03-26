@@ -1,18 +1,23 @@
-from auth.model.Users import Users
-from auth.schemas.login import UserRegisterationSchema
+from features.auth.model.Users import Users
 from database.connection import get_db
+
+from utils.security import PasswordEncryption
+
 class UserLogin():
-    def __init__(slef):
-        pass
+    def __init__(self,payload):
+        self.data=  payload
     
     
-    async def RegisterUser(self,data:UserRegisterationSchema):
+    def RegisterUser(self):
         with get_db() as db:
             NewUser= Users(
-                username= data.username,
-                useremail=data.email,
-                password = data.password,
-                role = data.role
+                username= self.data.username,
+                useremail=self.data.email,
+                password = PasswordEncryption(self.data.password).Hashing(),
+                role = self.data.role
             )
             db.add(NewUser)
+            db.commit()
+            db.refresh(NewUser)
             return NewUser
+    
