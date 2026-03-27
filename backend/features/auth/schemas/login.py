@@ -5,4 +5,7 @@ class UserRegisterationSchema(BaseModel):
     password: Optional[str]
     role: str
     email: EmailStr
-    
+
+class UserLoginSchema(BaseModel):
+    email: EmailStr
+    password: str
