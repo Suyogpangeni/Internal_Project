@@ -16,8 +16,7 @@ class UserLogin():
                 username= self.data.username,
                 useremail=self.data.email,
                 password = PasswordEncryption(self.data.password).Hashing(),
-                role = self.data.role,
-                firstlogin= True
+               
             )
             db.add(NewUser)
             db.commit()

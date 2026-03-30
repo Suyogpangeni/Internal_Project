@@ -13,7 +13,6 @@ def register_user_endpoint(
         "user": {
             "username": new_user.username,
             "email": new_user.useremail,
-            "role": new_user.role
         }
     }
 
@@ -27,7 +26,5 @@ def login_user_endpoint(
         "user": {
             "username": user.username,
             "email": user.useremail,
-            "role": user.role,
-            "firstlogin": user.firstlogin,
         }
     }

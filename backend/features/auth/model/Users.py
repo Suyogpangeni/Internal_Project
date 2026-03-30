@@ -8,6 +8,4 @@ class Users(Base):
     username = Column(String(70), nullable=False)
     useremail = Column(String(100), nullable=False, unique=True)
     password = Column(String(200), nullable=False)
-    role = Column(String(50), nullable=False)
-    firstlogin = Column(Boolean, default=False)
     isdeleted = Column(Boolean, default=False)

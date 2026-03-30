@@ -10,13 +10,17 @@ host = os.getenv("DB_HOST")
 port = int(os.getenv("DB_PORT", 3306))
 db_name = os.getenv("DB_NAME")
 db_user = os.getenv("DB_USER")
-password = quote_plus(os.getenv("DB_PASSWORD"))
+db_password = os.getenv("DB_PASSWORD", "")
+password = quote_plus(os.getenv("db_password"))
 
 database_url= f"mysql+mysqldb://{db_user}:{password}@{host}:{port}/{db_name}"
-if not database_url:
-    print(f"Database {db_name} is not connected")
     
-engine= create_engine(database_url,echo=True)
+engine= create_engine(
+    database_url,
+    echo=True,
+    pool_pre_ping=True,
+    pool_recycle=1800,
+)
 SessionLocal= sessionmaker(bind= engine,autocommit=False,autoflush=True)
 
 
